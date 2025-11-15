@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container">
+  <div class="d-flex flex-wrap gap-3 justify-content-between align-items-center mb-4">
+    <h3 class="mb-0">📥 Inbox</h3>
+    <form class="d-flex" method="get" style="flex: 1; max-width: 500px;">
+      <input class="form-control me-2" type="search" name="q" placeholder="🔍 Search by sender or subject..." value="{{ query|default_if_none:'' }}">
+      <button class="btn btn-outline-primary" type="submit">Search</button>
+    </form>
+  </div>
+  <div class="list-group shadow-sm">
+    {% for mail in mails %}
+      <div class="list-group-item d-flex justify-content-between align-items-start">
+        <div style="flex: 1;">
+          <div class="fw-bold mb-2" style="font-size: 1.2em; color: #00ff88; text-shadow: 0 0 8px rgba(0, 255, 136, 0.6);">{{ mail.subject }}</div>
+          <div class="small mb-2" style="color: rgba(255,255,255,0.7) !important;">
+            <span style="color: #00ff88;">👤 From:</span> <strong>{{ mail.sender.username }}</strong> · 
+            <span style="color: #00ff88;">🕐</span> {{ mail.timestamp|date:"Y-m-d H:i" }}
+          </div>
+          <div class="text-truncate" style="max-width: 70ch; color: rgba(255,255,255,0.9);">{{ mail.body }}</div>
+        </div>
+        <div class="ms-3">
+          <a class="btn btn-sm btn-outline-danger" href="{% url 'delete_mail' mail.id %}?next=inbox">
+            🗑️ Delete
+          </a>
+        </div>
+      </div>
+    {% empty %}
+      <div class="list-group-item text-center p-5">
+        <div style="font-size: 4em; margin-bottom: 20px;">📭</div>
+        <h5 style="color: rgba(255,255,255,0.7);">No mails found.</h5>
+        <p style="color: rgba(255,255,255,0.5);">Your inbox is empty. Start by composing a new mail!</p>
+        <a href="{% url 'compose' %}" class="btn btn-primary mt-3">✉️ Compose Mail</a>
+      </div>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}
+
+
+
+

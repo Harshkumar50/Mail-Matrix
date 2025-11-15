@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-6 col-lg-5">
+      <div class="card shadow-sm">
+        <div class="card-body p-4">
+          <div class="text-center mb-4">
+            <h3 style="background: linear-gradient(135deg, #00ff88, #00b894); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">
+              👹 Join Mail-Matrix
+            </h3>
+            <p style="color: rgba(255,255,255,0.7) !important;">Create your account to get started</p>
+          </div>
+          <form method="post" novalidate>
+            {% csrf_token %}
+            <div class="mb-3">
+              <label class="form-label">👤 Username</label>
+              <input type="text" name="username" class="form-control" value="{{ form.username.value|default_if_none:'' }}" placeholder="Choose a username" required>
+              {{ form.username.errors }}
+            </div>
+            <div class="mb-3">
+              <label class="form-label">📧 Email</label>
+              <input type="email" name="email" class="form-control" value="{{ form.email.value|default_if_none:'' }}" placeholder="your.email@example.com">
+              {{ form.email.errors }}
+            </div>
+            <div class="mb-3">
+              <label class="form-label">🔒 Password</label>
+              <input type="password" name="password" class="form-control" placeholder="Create a strong password" required>
+              {{ form.password.errors }}
+            </div>
+            <div class="mb-3">
+              <label class="form-label">🔒 Confirm Password</label>
+              <input type="password" name="confirm_password" class="form-control" placeholder="Confirm your password" required>
+              {{ form.confirm_password.errors }}
+            </div>
+            <button type="submit" class="btn btn-primary w-100 mt-3">🚀 Register</button>
+          </form>
+          <p class="mt-4 mb-0 text-center" style="color: rgba(255,255,255,0.8) !important;">
+            Already have an account? <a href="{% url 'login' %}" style="color: #00ff88; font-weight: 600; text-shadow: 0 0 5px rgba(0, 255, 136, 0.5);">Login Here</a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+
+
+

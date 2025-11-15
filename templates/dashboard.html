@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container">
+  <div class="d-flex flex-wrap justify-content-between align-items-center mb-4">
+    <h3>👹 Dashboard</h3>
+    <div style="background: rgba(0, 255, 136, 0.2); padding: 10px 20px; border-radius: 10px; border: 1px solid rgba(0, 255, 136, 0.3);">
+      <span style="color: rgba(255,255,255,0.8);">Logged in as </span>
+      <strong style="color: #00ff88; text-transform: uppercase; text-shadow: 0 0 10px rgba(0, 255, 136, 0.8);">{{ request.user.username }}</strong>
+    </div>
+  </div>
+  <div class="row g-4">
+    <div class="col-md-6">
+      <div class="card shadow-sm h-100" style="border-left: 4px solid #00ff88;">
+        <div class="card-body p-4">
+          <div class="d-flex justify-content-between align-items-center mb-3">
+            <h5 class="card-title mb-0">📥 Inbox</h5>
+            <span style="font-size: 2.5em;">📬</span>
+          </div>
+          <p class="card-text display-6 mb-4">{{ inbox_count }}</p>
+          <a class="btn btn-outline-primary w-100" href="{% url 'inbox' %}">
+            <span style="margin-right: 8px;">→</span> Open Inbox
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="card shadow-sm h-100" style="border-left: 4px solid #00b894;">
+        <div class="card-body p-4">
+          <div class="d-flex justify-content-between align-items-center mb-3">
+            <h5 class="card-title mb-0">📤 Sent</h5>
+            <span style="font-size: 2.5em;">✉️</span>
+          </div>
+          <p class="card-text display-6 mb-4">{{ sent_count }}</p>
+          <a class="btn btn-outline-secondary w-100" href="{% url 'sent' %}">
+            <span style="margin-right: 8px;">→</span> View Sent
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row mt-4">
+    <div class="col-12">
+      <div class="card" style="background: linear-gradient(135deg, rgba(0, 255, 136, 0.1), rgba(0, 184, 148, 0.1)); border: 1px solid rgba(0, 255, 136, 0.3);">
+        <div class="card-body p-4 text-center">
+          <h5 class="mb-3" style="color: #00ff88; text-shadow: 0 0 10px rgba(0, 255, 136, 0.8);">👹 Welcome to Mail-Matrix!</h5>
+          <p style="color: rgba(255,255,255,0.8); margin-bottom: 0;">
+            The symbiote mail dashboard. Send, receive, and manage your emails with dark power!
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+
+
+
